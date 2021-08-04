@@ -9,6 +9,7 @@ alert(pesos + " Pesos son " + Number(pesos) / 134.46 + " Libras");
 alert(pesos + " Pesos son " + Number(pesos) / 3, 813, 873.98 + " Bitcoins");
 
 document.write("El usuario piensa invertir " + respuesta);
+/* Algoritmo Condicional */
 if (pesos > 1000) {
     alert("El usuario tiene los requisitos minimos para invertir")
 
