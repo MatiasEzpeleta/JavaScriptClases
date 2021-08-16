@@ -1,30 +1,61 @@
-let free = false;
+let acumulador = ``;
+let tienda = [
+    { 
+        nombre: 'Monitor 27 Pulgadas', 
+        urlImagen: 'http://placehold.it/300x250', 
+        marca: 'Samsung', 
+        precio: 30000
+    },
+    { 
+        nombre: 'Monitor 24 Pulgadas', 
+        urlImagen: 'http://placehold.it/300x250', 
+        marca: 'Samsung', 
+        precio: 22000
+    },
+    { 
+        nombre: 'Celular G23', 
+        marca: 'Motorola', 
+        urlImagen: 'http://placehold.it/300x250', 
+        precio: 25000
+    },
+    { 
+        nombre: 'Tablet A8', 
+        marca: 'LG', 
+        urlImagen: 'http://placehold.it/300x250', 
+        precio: 18000},   
+];
 
-const validarCliente = (time) =>{
-    let edad = Number( prompt("¿Cual es tu edad?"));
-    if (edad > 18) {
-       if (time >= 2 && time < 7 && free==false) {
-           alert("Despues de las 2 entrada gratis");
-           free = true;
 
-       } else {
-           alert(`Son las ${time}:00hs y podes pasar, pero tenes que pagar la entrada`);
-       }
-    } else {
-        alert("Solo para mayores de 18 años")
+for(let i = 0; i < tienda.length; i++) {    
+    
+    let total = 0;    
+        
+    function calcularTotal(totalCarrito) {
+        // Precio sin IVA
+        document.getElementById("verTotal").innerHTML = 'El total es: $ ' + totalCarrito;
     }
+
+    function calcularIva(totalCarrito){        
+        // Precio con IVA
+        document.getElementById("verTotalConIva").innerHTML = 'El total con IVA es: $ ' + totalCarrito * 1.21;
+    }
+
+    function agregarProductos(precio) { 
+        let totalCarrito = total += precio; 
+        
+        calcularTotal(totalCarrito);
+        calcularIva(totalCarrito);     
+    }  
+    
+    acumulador +=  
+    `<div class="tienda">
+        <img src="${tienda[i].urlImagen}" alt="${tienda[i].nombre}"> 
+        <h2>${tienda[i].nombre}</h2>        
+        <p>${tienda[i].marca}</p>
+        <p>$${tienda[i].precio}</p>
+        <button onclick="agregarProductos(${tienda[i].precio})">Agregar Producto</button>
+    </div>`;
+
 }
 
-validarCliente(23)
-validarCliente(00)
-validarCliente(1)
-validarCliente(2)
-validarCliente(3)
-validarCliente(4)
-validarCliente(5)
-validarCliente(6)
-
-
-
-
-
+document.getElementById("contenedorProductos").innerHTML = acumulador;
