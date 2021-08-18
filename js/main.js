@@ -1,3 +1,6 @@
+let nombre = prompt('Hola,cual es tu nombre?')
+alert('Bienvenido '+ nombre)
+
 let acumulador = ``;
 let tienda = [
     { 
@@ -24,7 +27,11 @@ let tienda = [
         urlImagen: 'http://placehold.it/300x250', 
         precio: 18000},   
 ];
-
+/* Metodo Sort para ordenar los elementos de un array */
+const tiendaOrdenada = tienda.sort((a,b) => {
+    return (a.precio > b.precio) ? - 1 : 1
+})
+console.log(tiendaOrdenada)
 /* Object Constructor */
 function Producto(nombre,marca,precio) {
     this.nombre = nombre;
