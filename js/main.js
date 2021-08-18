@@ -25,6 +25,19 @@ let tienda = [
         precio: 18000},   
 ];
 
+/* Object Constructor */
+function Producto(nombre,marca,precio) {
+    this.nombre = nombre;
+    this.marca = marca;
+    this.precio = precio;
+    this.disponible = true
+}
+
+const producto2 = new Producto ('monitor 40 pulgadas','LG', 78500);
+console.log(producto2);
+
+const producto3 = new Producto ('Celular A51','Samsung', 52999)
+console.log(producto3)
 
 for(let i = 0; i < tienda.length; i++) {    
     
