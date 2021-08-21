@@ -1,5 +1,5 @@
-let nombre = prompt('Hola,cual es tu nombre?')
-alert('Bienvenido ' + nombre)
+/* let nombre = prompt('Hola,cual es tu nombre?')
+alert('Bienvenido ' + nombre) */
 
 let acumulador = ``;
 let tienda = [{
@@ -38,23 +38,58 @@ console.log(tiendaOrdenada)
 
 /* Object Constructor */
 class Producto{
-constructor(nombre, marca, precio) {
+constructor(nombre, marca, precio, stock) {
     this.nombre = nombre;
     this.marca = marca;
     this.precio = precio;
+    this.stock= stock;
     this.disponible = false;}
 
     disponibilidad() {
         this.disponible = true;
     }
     
-}
+    sumaIva() {
+        this.precio = this.precio * 1.21;
+    }        
 
-const producto2 = new Producto('monitor 40 pulgadas', 'LG', 78500);
+    venta(cantidad) {
+        if(cantidad <= stock){
+            return(stock -= cantidad)
+        }else{
+            alert('Stock insuficiente')
+        }
+    }
+    total(cantidad) {
+        this.precio = this.precio * cantidad;
+    }
+}
+/* Creamos el objeto con su respectiva cantidad */
+const producto2 = new Producto('monitor 40 pulgadas', 'LG', 78500, 5);
 console.log(producto2);
 
-const producto3 = new Producto('Celular A51', 'Samsung', 52999)
+const producto3 = new Producto('Celular A51', 'Samsung', 52999, 0)
 console.log(producto3)
+
+/* Preguntamos al usuario que cantidad de producto quiere */
+let cantidad = prompt('Indique la cantidad de ${producto2.nombre} que desea comprar');
+
+/* Agregamos IVA */
+producto2.sumaIva();
+producto3.sumaIva();
+
+/* Para el total, llamamos al metodo del objeto, pasandole la cantidad del producto que eligió el usuario  */
+producto2.total(cantidad);
+
+/* empujamos el producto al carrito con push */
+tienda.push(producto2);
+
+
+/* para mostrarlo en la consola como una tabla*/
+console.table(tienda)
+
+/* para mostrarle al usuario el total con el iva incluido */
+alert('El total de su compra con iva incluido es ${producto2.precio}')
 
 for (let i = 0; i < tienda.length; i++) {
 
